@@ -1,0 +1,27 @@
+# Template used to create this container: /usr/share/lxc/templates/lxc-download
+# Parameters passed to the template: -d ubuntu -r utopic -a amd64
+# For additional config options, please look at lxc.container.conf(5)
+
+# Distribution configuration
+lxc.include = /usr/share/lxc/config/ubuntu.common.conf
+lxc.arch = x86_64
+
+# Container specific configuration
+lxc.rootfs = /var/lib/lxc/gui-u1/rootfs
+lxc.utsname = gui-u1
+
+# Network configuration
+lxc.network.type = veth
+lxc.network.link = lxcbr0
+lxc.network.flags = up
+lxc.network.hwaddr = 00:16:3e:xx:xx:xx
+
+# Extra cgroup device access
+## tty8
+lxc.cgroup.devices.allow = c 4:8 rwm   		
+## dri/card0
+lxc.cgroup.devices.allow = c 226:0 rwm
+## fb0
+lxc.cgroup.devices.allow = c 29:0 rwm
+## input
+lxc.cgroup.devices.allow = c 13:* rwm
